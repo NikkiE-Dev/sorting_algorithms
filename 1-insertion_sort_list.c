@@ -7,21 +7,19 @@
  * @secnode: second node used in function
  */
 
- void swapping(listint_t *frstnode, listint_t *secnode)
- {
-     secnode->prev = frstnode->prev;
-            if (secnode->prev)
-            {
-                secnode->prev->next = secnode;
-                frstnode->prev = secnode;
-                frstnode->next = secnode->next;
-            }
-            if (frstnode->next)
-            {
-                frstnode->next->prev = frstnode;
-                secnode->next - frstnode;
-            }
- }
+void swapping(listint_t *frstnode, listint_t *secnode)
+{
+    secnode->prev = frstnode->prev;
+
+    if (secnode->prev)
+    secnode->prev->next = secnode;
+    frstnode->prev = secnode;
+    frstnode->next = secnode->next;
+
+    if (frstnode->next)
+    frstnode->next->prev = frstnode;
+    secnode->next = frstnode;
+}
 
 /**
  * insertion_sort_list - sorting algorithm used on doubly linked list
@@ -29,14 +27,14 @@
  * @list: the list created 
  */
 
- void insertion_sort_list(listint_t **list)
- {
-    if (*list == NULL || list == NULL)
+void insertion_sort_list(listint_t **list)
+{
+    listint_t *curr, *temp, *fllw;
+
+    if (*list == NULL || list == NULL || !list)
     {
         return;
     }
-
-    listint_t *curr, *temp, *fllw;
     
     curr = *list;
     temp = curr->next;
@@ -53,7 +51,7 @@
 
             while (fllw && fllw->n > temp->n)
             {
-                swapping(fllw, temp);
+                swapping(fllw, temp);   
                 if (!temp->prev)
                 *list = temp;
                 print_list(*list);
@@ -63,7 +61,6 @@
         
         else
         curr = temp;
-        tmp = curr->next;
+        temp = curr->next;
     }
-
- }
+}
